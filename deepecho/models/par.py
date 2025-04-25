@@ -109,6 +109,8 @@ class PARModel(DeepEcho):
         else:
             device = 'cuda'
 
+        print(device)
+
         self.device = torch.device(device)
         self.verbose = verbose
         self.loss_values = pd.DataFrame(columns=['Epoch', 'Loss'])
@@ -291,6 +293,7 @@ class PARModel(DeepEcho):
         Args:
             sequences (list):
                 List of sequences. Each sequence is a single training example
+                (i.e. an example of a multivariate time series with some context).
                 (i.e. an example of a multivariate time series with some context).
                 For example, a sequence might look something like::
 
