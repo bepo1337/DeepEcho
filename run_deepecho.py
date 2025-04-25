@@ -61,7 +61,7 @@ data_types = {
 entities_in_real_data = df.player_id.nunique()
 from deepecho import PARModel
 
-model = PARModel(epochs=1, cuda=False)
+model = PARModel(epochs=1, cuda=True)
 model.fit(
     data=df,
     entity_columns=entity_columns,

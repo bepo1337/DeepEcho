@@ -101,8 +101,10 @@ class PARModel(DeepEcho):
     def __init__(self, epochs=128, sample_size=1, cuda=True, verbose=True):
         self.epochs = epochs
         self.sample_size = sample_size
+        print(f"cuda: {cuda}")
 
         if not cuda or not torch.cuda.is_available():
+            print("not available or not cuda")
             device = 'cpu'
         elif isinstance(cuda, str):
             device = cuda
