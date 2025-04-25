@@ -61,7 +61,7 @@ data_types = {
 entities_in_real_data = df.player_id.nunique()
 from deepecho import PARModel
 
-model = PARModel(epochs=1, cuda=True)
+model = PARModel(epochs=1024, cuda=True)
 model.fit(
     data=df,
     entity_columns=entity_columns,
@@ -69,5 +69,5 @@ model.fit(
     data_types=data_types,
     sequence_index=sequence_index,
 )
-samples = model.sample(1)
+samples = model.sample(entities_in_real_data)
 samples.to_json("par_samples.json", orient="records")
