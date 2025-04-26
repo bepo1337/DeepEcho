@@ -28,7 +28,7 @@ data_types = {
     "league_id": categorical,
     "club": categorical,
     "league": categorical,
-    "season_id": count,
+    "season_id": categorical,
     "injury": categorical,
     "last_transfer_fee": count,
     "coach": categorical,
@@ -61,7 +61,7 @@ data_types = {
 entities_in_real_data = df.player_id.nunique()
 from deepecho import PARModel
 
-model = PARModel(epochs=1024, cuda=True)
+model = PARModel(epochs=1000, cuda=True)
 model.fit(
     data=df,
     entity_columns=entity_columns,
@@ -69,5 +69,5 @@ model.fit(
     data_types=data_types,
     sequence_index=sequence_index,
 )
-samples = model.sample(entities_in_real_data)
+samples = model.sample(entities_in_real_data*4)
 samples.to_json("par_samples.json", orient="records")
