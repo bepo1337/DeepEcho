@@ -70,5 +70,5 @@ model.fit(
     data_types=data_types,
     sequence_index=sequence_index,
 )
-samples = model.sample(entities_in_real_data*4)
+samples = model.sample(entities_in_real_data*2)
 samples.to_json("par_samples.json", orient="records")
