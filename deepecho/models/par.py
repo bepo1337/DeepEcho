@@ -296,7 +296,6 @@ class PARModel(DeepEcho):
             sequences (list):
                 List of sequences. Each sequence is a single training example
                 (i.e. an example of a multivariate time series with some context).
-                (i.e. an example of a multivariate time series with some context).
                 For example, a sequence might look something like::
 
                     {
