@@ -28,7 +28,6 @@ class DeepEcho:
             data_types:
                 See `fit`.
         """
-        #TODO datatyeps bookmark
         dtypes = set([
             'continuous',
             'categorical',
