@@ -1,5 +1,7 @@
 import pandas as pd
-df = pd.read_json("data/real_data_test_pre.json")
+from deepecho import PARModel
+
+df = pd.read_json("data/real_data_train_pre.json")
 
 # add sequence index by adding the date back together. This will later on not be generated
 df['validity_start'] = pd.to_datetime(
@@ -15,10 +17,9 @@ count = "count"
 continuous = "continuous"
 entity_columns = ["player_id"]
 sequence_index = "validity_start"
-context_columns = ["first_name", "last_name", "pseudonym", "position", "foot", "citizenship", "height", ]
+context_columns = ["first_name", "last_name", "pseudonym", "position", "foot", "citizenship", "height",
+                   "date_of_birth_year", "date_of_birth_month", "date_of_birth_day"]
 
-#todo maybe use datetime type for the dates
-# can use suffix _idx for validity_start for the idx and validity_start fpr the real one
 data_types = {
     "injury_category": categorical,
     "market_value_category": categorical,
@@ -34,11 +35,11 @@ data_types = {
     "coach": categorical,
     "market_value": continuous,
     "league_played_matches": count,
-     "league_minutes_played": count,
+    "league_minutes_played": count,
     "league_goals": count,
     "international_goals": count,
     "international_minutes_played": count,
-    "international_playd_matches": count,
+    "international_played_matches": count,
     "international_competition": categorical,
     "missed_matches": count,
     "validity_start_year": categorical,
@@ -59,9 +60,9 @@ data_types = {
 }
 
 entities_in_real_data = df.player_id.nunique()
-from deepecho import PARModel
+print(f"entities in real data: {entities_in_real_data}")
 
-model = PARModel(epochs=1000, cuda=True)
+model = PARModel(epochs=1024, cuda=True)
 model.fit(
     data=df,
     entity_columns=entity_columns,
