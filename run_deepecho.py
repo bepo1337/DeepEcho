@@ -62,7 +62,7 @@ data_types = {
 entities_in_real_data = df.player_id.nunique()
 print(f"entities in real data: {entities_in_real_data}")
 
-model = PARModel(epochs=512, cuda=True)
+model = PARModel(epochs=750, cuda=True)
 model.fit(
     data=df,
     entity_columns=entity_columns,
